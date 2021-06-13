@@ -35,14 +35,14 @@ dialog > form input {
 }
 
 button {
-    padding: 20px 50px;
+    padding: 0 50px;
     background-color: #027BFF;
     color: #fff;
     outline: none;
     border: none;
     border-radius: 5px;
     font-size: 20px;
-    height: 70px;
+    height: 60px;
     cursor: pointer;
 }
 button:hover {
