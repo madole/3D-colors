@@ -1,0 +1,86 @@
+.loading {
+    padding: 10px;
+    font-weight: 900;
+    font-size: 3em;
+    transform: translate3d(0, -50%, 0);
+    color: #fff;
+    width: 600px
+}
+
+dialog {
+    width: 50vw;
+    height: 50vh;
+    border-radius: 25px;
+}
+
+dialog > form {
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+dialog > form span {
+    padding-right: 10px;
+}
+
+dialog > form input {
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: 250px;
+}
+
+button {
+    padding: 20px 50px;
+    background-color: #027BFF;
+    color: #fff;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+dialog[open] {
+    display: flex;
+}
+
+dialog[open] > form {
+    animation: fade-in 300ms forwards;
+}
+
+dialog button {
+    margin-top: 10px;
+}
+
+dialog {
+    position: fixed;
+    top: 50vh;
+    transform: translate(0, -40vh);
+}
+
+dialog::backdrop /* native */,
+dialog + .backdrop /* polyfill */
+{
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.flex-center {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
