@@ -10,6 +10,7 @@ import {
 import Fallback from "./Fallback";
 import Points from "./Points";
 import Dialog from "./Dialog";
+import isDebug from "./is-debug";
 
 export default function App() {
   const [image, setImage] = useState(null);
@@ -18,7 +19,7 @@ export default function App() {
   return (
     <>
       <Canvas
-        style={{ height: "85vh", width: "100vw", border: "1px solid black" }}
+        style={{ height: "75vh", width: "100vw", border: "1px solid black" }}
         key={image}
       >
         <OrthographicCamera
@@ -36,7 +37,7 @@ export default function App() {
             </Suspense>
           )}
           <OrbitControls ref={controlsRef} />
-          {window.location.search.split("debug=")[1] && (
+          {isDebug && (
             <GizmoHelper
               alignment={"bottom-right"}
               margin={[80, 80]}
