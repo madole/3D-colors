@@ -19,7 +19,7 @@ export default function App() {
   return (
     <>
       <Canvas
-        style={{ height: "85vh", width: "100vw", border: "1px solid black" }}
+        style={{ height: "75vh", width: "100vw", border: "1px solid black" }}
         key={image}
       >
         <OrthographicCamera
