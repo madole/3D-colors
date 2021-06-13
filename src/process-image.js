@@ -1,4 +1,5 @@
 import { Vector3 } from "three";
+import isDebug from "./is-debug";
 
 const debugCanvas = (canvas) => {
   const root = document.querySelector("#root");
@@ -38,7 +39,9 @@ const processImage = async (
   canvas.height = height;
   const context = canvas.getContext("2d");
   context.drawImage(image, 0, 0);
-  // debugCanvas(canvas);
+  if (isDebug) {
+    debugCanvas(canvas);
+  }
   const vectorArray = [];
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {

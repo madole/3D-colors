@@ -10,6 +10,7 @@ import {
 import Fallback from "./Fallback";
 import Points from "./Points";
 import Dialog from "./Dialog";
+import isDebug from "./is-debug";
 
 export default function App() {
   const [image, setImage] = useState(null);
@@ -36,7 +37,7 @@ export default function App() {
             </Suspense>
           )}
           <OrbitControls ref={controlsRef} />
-          {window.location.search.split("debug=")[1] && (
+          {isDebug && (
             <GizmoHelper
               alignment={"bottom-right"}
               margin={[80, 80]}
