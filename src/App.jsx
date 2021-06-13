@@ -1,13 +1,19 @@
 import { Canvas } from "@react-three/fiber";
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import "./App.css";
-import { OrbitControls, OrthographicCamera } from "@react-three/drei";
+import {
+  GizmoHelper,
+  GizmoViewport,
+  OrbitControls,
+  OrthographicCamera,
+} from "@react-three/drei";
 import Fallback from "./Fallback";
 import Points from "./Points";
 import Dialog from "./Dialog";
 
 export default function App() {
   const [image, setImage] = useState(null);
+  const controlsRef = useRef();
 
   return (
     <>
@@ -29,7 +35,20 @@ export default function App() {
               <Points imageSrc={image} />
             </Suspense>
           )}
-          <OrbitControls />
+          <OrbitControls ref={controlsRef} />
+          {window.location.search.split("debug=")[1] && (
+            <GizmoHelper
+              alignment={"bottom-right"}
+              margin={[80, 80]}
+              onTarget={() => controlsRef?.current?.target}
+              onUpdate={() => controlsRef.current?.update()}
+            >
+              <GizmoViewport
+                axisColors={["red", "green", "blue"]}
+                labelColor={"white"}
+              />
+            </GizmoHelper>
+          )}
         </OrthographicCamera>
       </Canvas>
       {image ? (

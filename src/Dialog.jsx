@@ -22,6 +22,14 @@ const Dialog = ({ setImage }) => {
           <div>Paste an image URL to start</div>
           <input name="image-src" type="url" inputMode="url" autoFocus />
         </label>
+        <a
+          className="link"
+          href={"https://unsplash.com"}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Try Unsplash - The internet’s source of freely-usable images.
+        </a>
         <button type="submit">Submit</button>
       </form>
     </dialog>
