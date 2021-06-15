@@ -5,7 +5,7 @@ const debugCanvas = (canvas) => {
   const root = document.querySelector("#root");
   root.appendChild(canvas);
 };
-const SAMPLE_RATE = 500;
+const SAMPLE_RATE = 50;
 
 const countVectors = (vectors) => {
   const vectorCounts = vectors.reduce((acc, vec) => {
@@ -45,7 +45,7 @@ const processImage = async (
   const vectorArray = [];
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
-      if (x % SAMPLE_RATE === 0 || y % SAMPLE_RATE === 0) {
+      if (x % SAMPLE_RATE === 0) {
         const { data } = context.getImageData(x, y, 1, 1);
 
         const rgba = {

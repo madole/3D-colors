@@ -1,5 +1,6 @@
 import dialogPolyfill from "dialog-polyfill";
 import React, { useEffect, useRef } from "react";
+import './Dialog.css'
 
 const Dialog = ({ setImage }) => {
   const dialogRef = useRef();
@@ -28,7 +29,9 @@ const Dialog = ({ setImage }) => {
           target="_blank"
           rel="noreferrer"
         >
-          Try Unsplash - The internet’s source of freely-usable images.
+          Try Unsplash
+          <br />
+          The internet’s source of freely-usable images.
         </a>
         <button type="submit">Submit</button>
       </form>

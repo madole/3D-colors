@@ -11,6 +11,10 @@ import Fallback from "./Fallback";
 import Points from "./Points";
 import Dialog from "./Dialog";
 import isDebug from "./is-debug";
+import isAr from "./is-ar";
+import { ARCanvas } from "@react-three/xr/src/XR";
+
+const ActualCanvas = isAr ? ARCanvas : Canvas;
 
 export default function App() {
   const [image, setImage] = useState(null);
@@ -18,8 +22,8 @@ export default function App() {
 
   return (
     <>
-      <Canvas
-        style={{ height: "85vh", width: "100vw", border: "1px solid black" }}
+      <ActualCanvas
+        style={{ height: "75vh", width: "100vw", border: "1px solid black" }}
         key={image}
       >
         <OrthographicCamera
@@ -51,7 +55,7 @@ export default function App() {
             </GizmoHelper>
           )}
         </OrthographicCamera>
-      </Canvas>
+      </ActualCanvas>
       {image ? (
         <div className="flex-center">
           <button onClick={() => setImage(null)}>New image</button>
