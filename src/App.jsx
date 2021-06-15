@@ -22,8 +22,13 @@ export default function App() {
 
   return (
     <>
+<<<<<<< HEAD
       <ActualCanvas
         style={{ height: "85vh", width: "100vw", border: "1px solid black" }}
+=======
+      <Canvas
+        style={{ height: "75vh", width: "100vw", border: "1px solid black" }}
+>>>>>>> ee5c87036b3f5c03fdf850ed5d84fc2120e10969
         key={image}
       >
         <OrthographicCamera
