@@ -23,11 +23,18 @@ const countVectors = (vectors) => {
   return Object.values(vectorCounts);
 };
 
-const processImage = async (
-  imageSrc = "https://images.unsplash.com/photo-1623408861528-27ff44f27da5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
-) => {
+const processImage = async (imageSrc) => {
   const image = new Image();
-  image.src = imageSrc;
+
+  if (imageSrc instanceof File) {
+    const reader = new FileReader();
+    reader.onloadend = (e) => {
+      image.src = reader.result;
+    };
+    reader.readAsDataURL(imageSrc);
+  } else {
+    image.src = imageSrc;
+  }
   image.setAttribute("crossOrigin", "");
 
   await new Promise((resolve) => {

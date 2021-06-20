@@ -13,6 +13,7 @@ import Dialog from "./Dialog";
 import isDebug from "./is-debug";
 import isAr from "./is-ar";
 import { ARCanvas } from "@react-three/xr/src/XR";
+import Thumbnail from "./Thumbnail";
 
 const ActualCanvas = isAr ? ARCanvas : Canvas;
 
@@ -59,7 +60,7 @@ export default function App() {
       {image ? (
         <div className="flex-center">
           <button onClick={() => setImage(null)}>New image</button>
-          <img className="thumbnail" src={image} alt="thumbnail" />
+          <Thumbnail src={image} />
         </div>
       ) : (
         <Dialog setImage={setImage} />
