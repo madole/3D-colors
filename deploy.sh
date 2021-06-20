@@ -1,5 +1,5 @@
 git checkout deploy
-git merge main
+git rebase main
 npm run build
 git add .
 git commit -m "Chore: deploy"
