@@ -3,18 +3,18 @@
 }
 .file-input::before {
     content: 'Take or upload a picture';
-    display: inline-block;
-    background: linear-gradient(top, #f9f9f9, #e3e3e3);
-    border: 1px solid #999;
-    border-radius: 3px;
-    padding: 5px 8px;
+    display: flex;
+    padding: 0 10px;
+    background-color: #027BFF;
+    color: #fff;
     outline: none;
-    white-space: nowrap;
-    -webkit-user-select: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    height: 60px;
     cursor: pointer;
-    text-shadow: 1px 1px #fff;
-    font-weight: 700;
-    font-size: 10pt;
+    align-items: center;
+    justify-content: center;
 }
 .file-input:hover::before {
     border-color: black;
@@ -23,5 +23,5 @@
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
 .file-input {
-    width: 200px;
+    width: 250px;
 }
