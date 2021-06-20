@@ -1,6 +1,7 @@
 import dialogPolyfill from "dialog-polyfill";
 import React, { useEffect, useRef } from "react";
-import './Dialog.css'
+import "./Dialog.css";
+import FileInput from "./FileInput";
 
 const Dialog = ({ setImage }) => {
   const dialogRef = useRef();
@@ -15,7 +16,8 @@ const Dialog = ({ setImage }) => {
           e.preventDefault();
           const formData = new FormData(e.currentTarget);
           const imageSrc = formData.get("image-src");
-          setImage(imageSrc);
+          const imageFile = formData.get("file");
+          setImage(imageSrc || imageFile);
           e.currentTarget.reset();
         }}
       >
@@ -33,6 +35,7 @@ const Dialog = ({ setImage }) => {
           <br />
           The internet’s source of freely-usable images.
         </a>
+        <FileInput />
         <button type="submit">Submit</button>
       </form>
     </dialog>
