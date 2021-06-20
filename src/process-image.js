@@ -5,7 +5,7 @@ const debugCanvas = (canvas) => {
   const root = document.querySelector("#root");
   root.appendChild(canvas);
 };
-const SAMPLE_RATE = 50;
+const SAMPLE_RATE = 100000;
 
 const countVectors = (vectors) => {
   const vectorCounts = vectors.reduce((acc, vec) => {
@@ -41,6 +41,9 @@ const processImage = async (imageSrc) => {
     image.onload = () => resolve();
   });
   const { naturalHeight: width, naturalWidth: height } = image;
+  const pixels = width * height;
+  const dynamicSampleRate = pixels / SAMPLE_RATE;
+  console.log(`${pixels} Pixels | Sample Rate ${dynamicSampleRate}`);
   const canvas = document.createElement("canvas");
   canvas.width = width;
   canvas.height = height;
@@ -52,7 +55,7 @@ const processImage = async (imageSrc) => {
   const vectorArray = [];
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
-      if (x % SAMPLE_RATE === 0) {
+      if (x % dynamicSampleRate === 0) {
         const { data } = context.getImageData(x, y, 1, 1);
 
         const rgba = {
