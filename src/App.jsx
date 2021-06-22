@@ -25,7 +25,7 @@ export default function App() {
     <>
       <ActualCanvas
         style={{ height: "75vh", width: "100vw", border: "1px solid black" }}
-        gl={{ antialias: false, alpha: true }}
+        gl={{ antialias: true, alpha: false }}
         onCreated={({ gl }) => gl.setClearColor("#000")}
       >
         <OrthographicCamera
