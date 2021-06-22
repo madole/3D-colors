@@ -42,7 +42,7 @@ const processImage = async (imageSrc) => {
   });
   const { naturalHeight: width, naturalWidth: height } = image;
   const pixels = width * height;
-  const dynamicSampleRate = pixels / SAMPLE_RATE;
+  const dynamicSampleRate = Math.floor(pixels / SAMPLE_RATE);
   console.log(`${pixels} Pixels | Sample Rate ${dynamicSampleRate}`);
   const canvas = document.createElement("canvas");
   canvas.width = width;

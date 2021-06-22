@@ -25,37 +25,38 @@ export default function App() {
     <>
       <ActualCanvas
         style={{ height: "75vh", width: "100vw", border: "1px solid black" }}
-        key={image}
+        gl={{ antialias: false, alpha: true }}
+        onCreated={({ gl }) => gl.setClearColor("#000")}
       >
         <OrthographicCamera
           makeDefault
-          autoRotate
-          position={[-10, -10, -5]}
-          rotation={[3, -1, 2.5533897942197092]}
-          zoom={3}
-        >
-          <ambientLight />
-          <pointLight position={[10, 10, 10]} />
-          {image && (
-            <Suspense fallback={<Fallback />}>
-              <Points imageSrc={image} />
-            </Suspense>
-          )}
-          <OrbitControls ref={controlsRef} />
-          {isDebug && (
-            <GizmoHelper
-              alignment={"bottom-right"}
-              margin={[80, 80]}
-              onTarget={() => controlsRef?.current?.target}
-              onUpdate={() => controlsRef.current?.update()}
-            >
-              <GizmoViewport
-                axisColors={["red", "green", "blue"]}
-                labelColor={"white"}
-              />
-            </GizmoHelper>
-          )}
-        </OrthographicCamera>
+          position={[70, -50, 50]}
+          near={1}
+          far={1000}
+          zoom={5}
+        />
+        <ambientLight />
+        <pointLight position={[150, 150, 150]} intensity={0.5} />
+
+        {image && (
+          <Suspense fallback={<Fallback />}>
+            <Points imageSrc={image} />
+          </Suspense>
+        )}
+        <OrbitControls ref={controlsRef} />
+        {isDebug && (
+          <GizmoHelper
+            alignment={"bottom-right"}
+            margin={[80, 80]}
+            onTarget={() => controlsRef?.current?.target}
+            onUpdate={() => controlsRef.current?.update()}
+          >
+            <GizmoViewport
+              axisColors={["red", "green", "blue"]}
+              labelColor={"white"}
+            />
+          </GizmoHelper>
+        )}
       </ActualCanvas>
       {image ? (
         <div className="flex-center">

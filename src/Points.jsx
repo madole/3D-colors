@@ -1,53 +1,41 @@
 import * as React from "react";
-import { useThree } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
 import usePromise from "react-promise-suspense";
 import processImage from "./process-image";
-import {
-  Color,
-  Euler,
-  InstancedMesh,
-  Matrix4,
-  MeshPhongMaterial,
-  Quaternion,
-  SphereBufferGeometry,
-  Vector3,
-} from "three";
-import { useEffect, useMemo } from "react";
+import { Color, Object3D } from "three";
+import { useFrame } from "@react-three/fiber";
+const dummy = new Object3D();
 
 const Points = ({ imageSrc }) => {
-  const { scene } = useThree();
+  const ref = useRef();
   const points = usePromise(processImage, [imageSrc]);
-  const mesh = useMemo(
-    () =>
-      new InstancedMesh(
-        new SphereBufferGeometry(1, 32, 32),
-        new MeshPhongMaterial({ shininess: 100 }),
-        points.length
-      ),
-    [points]
-  );
+
   useEffect(() => {
+    if (!ref.current) return;
     points.forEach((p, i) => {
-      const matrix = new Matrix4();
-      const rotation = new Euler();
-      const quaternion = new Quaternion();
-      const scaleValue = Math.min(25, p.count);
-
-      const scale = new Vector3(scaleValue, scaleValue, scaleValue);
-
-      quaternion.setFromEuler(rotation);
-
-      matrix.compose(p.vector, quaternion, scale);
-      mesh.setMatrixAt(i, matrix);
+      const scaleValue = Math.min(5, p.count);
+      dummy.position.set(-p.vector.x, p.vector.y, -p.vector.z);
+      dummy.scale.set(scaleValue, scaleValue, scaleValue);
+      dummy.updateMatrix();
+      ref.current.setMatrixAt(i, dummy.matrix);
 
       const colorVec = p.vector.normalize();
       const color = new Color(colorVec.x, colorVec.y, colorVec.z);
-      mesh.setColorAt(i, color);
+      ref.current.setColorAt(i, color);
     });
-    scene?.add(mesh);
+    ref.current.instanceMatrix.needsUpdate = true;
   }, [points]);
 
-  return null;
+  if (!points.length) {
+    return null;
+  }
+
+  return (
+    <instancedMesh ref={ref} args={[null, null, points.length]}>
+      <sphereBufferGeometry args={[1, 32, 32]} />
+      <meshPhongMaterial shininess={100} />
+    </instancedMesh>
+  );
 };
 
 export default Points;
