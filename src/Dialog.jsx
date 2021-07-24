@@ -14,7 +14,11 @@ const Dialog = ({ setImage }) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          const formData = new FormData(e.currentTarget);
+          let formData = new FormData(e.target);
+          // Account for Dialog-Polyfill
+          if (formData.fd) {
+            formData = formData.fd;
+          }
           const imageSrc = formData.get("image-src");
           const imageFile = formData.get("file");
           setImage(imageSrc || imageFile);

@@ -2,6 +2,8 @@ import { Canvas } from "@react-three/fiber";
 import React, { Suspense, useRef, useState } from "react";
 import "./App.css";
 import {
+  AdaptiveDpr,
+  Environment,
   GizmoHelper,
   GizmoViewport,
   OrbitControls,
@@ -27,7 +29,11 @@ export default function App() {
         style={{ height: "75vh", width: "100vw", border: "1px solid black" }}
         gl={{ antialias: true, alpha: false }}
         onCreated={({ gl }) => gl.setClearColor("#000")}
+        mode="concurrent"
+        shadows
+        frameloop="demand"
       >
+        <AdaptiveDpr />
         <OrthographicCamera
           makeDefault
           position={[70, -50, 50]}
@@ -41,6 +47,7 @@ export default function App() {
         {image && (
           <Suspense fallback={<Fallback />}>
             <Points imageSrc={image} />
+            <Environment preset={"sunset"} />
           </Suspense>
         )}
         <OrbitControls ref={controlsRef} />
