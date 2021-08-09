@@ -26,7 +26,7 @@ export default function App() {
   return (
     <>
       <ActualCanvas
-        style={{ height: "75vh", width: "100vw", border: "1px solid black" }}
+        style={{ height: "100vh", width: "100vw", border: "1px solid black" }}
         gl={{ antialias: true, alpha: false }}
         onCreated={({ gl }) => gl.setClearColor("#000")}
         mode="concurrent"
@@ -66,7 +66,7 @@ export default function App() {
         )}
       </ActualCanvas>
       {image ? (
-        <div className="flex-center">
+        <div className="flex-center button-container">
           <button onClick={() => setImage(null)}>New image</button>
           <Thumbnail src={image} />
         </div>

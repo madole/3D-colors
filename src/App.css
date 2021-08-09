@@ -7,6 +7,12 @@
     width: 600px
 }
 
+.button-container {
+    position: absolute;
+    bottom: 20px;
+    left: 40%;
+}
+
 button {
     padding: 0 50px;
     background-color: #027BFF;
