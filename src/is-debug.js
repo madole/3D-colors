@@ -1,1 +1,1 @@
-export default !!window.location.search.split("debug=")[1];
+export default window.location.search.includes("debug");

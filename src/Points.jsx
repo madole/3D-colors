@@ -3,14 +3,13 @@ import { useEffect, useRef } from "react";
 import usePromise from "react-promise-suspense";
 import processImage from "./process-image";
 import { Color, Object3D } from "three";
-import { useTexture } from "@react-three/drei";
 
 const dummy = new Object3D();
 
 const Points = ({ imageSrc }) => {
   const ref = useRef();
   const points = usePromise(processImage, [imageSrc]);
-  const texture = useTexture(imageSrc);
+
   useEffect(() => {
     if (!ref.current) return;
     points.forEach((p, i) => {
@@ -37,7 +36,7 @@ const Points = ({ imageSrc }) => {
       args={[null, null, points.length]}
       key={points.length}
     >
-      <sphereBufferGeometry args={[1, 32, 32]} />
+      <sphereBufferGeometry args={[1, 20, 20]} />
       <meshPhysicalMaterial
         envMapIntensity={0.4}
         clearcoat={0.8}

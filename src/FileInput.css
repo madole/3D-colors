@@ -4,14 +4,10 @@
 .file-input::before {
     content: 'Take or upload a picture';
     display: flex;
-    padding: 0 10px;
-    background-color: #027BFF;
-    color: #fff;
-    outline: none;
-    border: none;
+    border: 1px solid #232a2a;
     border-radius: 5px;
-    font-size: 20px;
-    height: 60px;
+    font-size: 16px;
+    padding: 10px;
     cursor: pointer;
     align-items: center;
     justify-content: center;
